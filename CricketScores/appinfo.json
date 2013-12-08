@@ -1,0 +1,17 @@
+{
+  "uuid": "0656547b-2d4e-40c1-b19b-582f7368c328",
+  "shortName": "Cricket",
+  "longName": "Cricket Scores",
+  "companyName": "Ishan Thukral",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
