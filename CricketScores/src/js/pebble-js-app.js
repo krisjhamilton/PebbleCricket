@@ -28,7 +28,16 @@ function fetchScores() {
 }
 
 var createResponseForPebble = function() {
+	console.log("sending");
+	Pebble.sendAppMessage({
+	    "team1_name":"AUS",
+	    "team1_score":"101",
+	    "team1_score2":"120",
 
+	    "team1_name":"IND",
+	    "team1_score":"400",
+	    "team1_score2":"280/1d"
+	});
 }
 
 var parseScoreResponse = function(response) {
@@ -81,5 +90,8 @@ var findTeam = function(teamString) {
 Pebble.addEventListener("ready",
     function(e) {
         console.log("Hello world! - Sent from your javascript application.");
+        setInterval(function() {
+        	createResponseForPebble();
+        }, 5000);
     }
 );

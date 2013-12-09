@@ -157,6 +157,11 @@ static void init(void) {
     .load = window_load,
     .unload = window_unload,
   });
+  
+  const int inbound_size = 128;
+  const int outbound_size = 128;
+  app_message_open(inbound_size, outbound_size);
+
   const bool animated = true;
   window_stack_push(window, animated);
 }
