@@ -5,19 +5,17 @@ static Window *window;
 static TextLayer *team1_name;
 static TextLayer *team1_score;
 static TextLayer *team1_score2;
-
 static TextLayer *team2_name;
 static TextLayer *team2_score;
 static TextLayer *team2_score2;
 
 static AppSync sync;
-static uint8_t sync_buffer[128];
+static uint8_t sync_buffer [128];
 
 enum ScoreKey {
   TEAM1_NAME_KEY = 0x0,
   TEAM1_SCORE_KEY = 0X1,
   TEAM1_SCORE2_KEY = 0x2,
-  
   TEAM2_NAME_KEY = 0x3,
   TEAM2_SCORE_KEY = 0x4,
   TEAM2_SCORE2_KEY = 0x5,
@@ -37,10 +35,11 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 static void sync_error_callback(DictionaryResult dict_error, AppMessageResult app_message_error, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", app_message_error);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "App Message Sync Error: %d", dict_error);
 }
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tuple, const Tuple* old_tuple, void* context) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "New: %s", new_tuple->value->cstring);
   switch (key) {
     case TEAM1_NAME_KEY:
       // App Sync keeps new_tuple in sync_buffer, so we may use it directly
@@ -129,10 +128,9 @@ static void window_load(Window *window) {
     TupletCString(TEAM1_NAME_KEY, "IND"),
     TupletCString(TEAM1_SCORE_KEY, "480/10"),
     TupletCString(TEAM1_SCORE2_KEY, "80/2d"),
-
     TupletCString(TEAM2_NAME_KEY, "PAK"),
     TupletCString(TEAM2_SCORE_KEY, "280/10"),
-    TupletCString(TEAM2_SCORE2_KEY, "20/9"),
+    TupletCString(TEAM2_SCORE2_KEY, "20/9")
   };
 
   app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
@@ -142,6 +140,8 @@ static void window_load(Window *window) {
 }
 
 static void window_unload(Window *window) {
+  app_sync_deinit(&sync);
+
   text_layer_destroy(team1_name);
   text_layer_destroy(team1_score);
   text_layer_destroy(team1_score2);

@@ -11,9 +11,9 @@ var teamHash = {
 	"Sri Lanka": "SL",
 	"West Indies": "WI",
 	"Zimbabwe": "ZIM"
-}
+};
 
-var teamname = "Australia"
+var teamname = "Australia";
 
 function fetchScores() {
 	var response;
@@ -25,7 +25,7 @@ function fetchScores() {
 		parseScoreResponse(xmlResponse);
 	}
 	req.send(null);
-}
+};
 
 var createResponseForPebble = function() {
 	console.log("sending");
@@ -33,12 +33,11 @@ var createResponseForPebble = function() {
 	    "team1_name":"AUS",
 	    "team1_score":"101",
 	    "team1_score2":"120",
-
-	    "team1_name":"IND",
-	    "team1_score":"400",
-	    "team1_score2":"280/1d"
+	    "team2_name":"IND",
+	    "team2_score":"400",
+	    "team2_score2":"280/1d"
 	});
-}
+};
 
 var parseScoreResponse = function(response) {
 	var activeGames = response.getElementsByTagName("title");
@@ -48,7 +47,7 @@ var parseScoreResponse = function(response) {
 	else {
 		findUserMatchingGame(activeGames);
 	};
-}
+};
 
 var findUserMatchingGame = function(activeGames) {
 	var userTeamGame = null;
@@ -64,7 +63,7 @@ var findUserMatchingGame = function(activeGames) {
 	else {
 		parseUserMatchedGame(userTeamGame.childNodes[0].nodeValue);
 	}
-}
+};
 
 var isTest = function(gameString) {
 	var isTest = false;
@@ -72,7 +71,7 @@ var isTest = function(gameString) {
 	var isTestMatch = isTestPattern.exec(gameString);
 	if ( isTestMatch.length > 0 ) { isTest = true; };
 	return isTest;
-}
+};
 
 var parseUserMatchedGame = function(gameString) {
 	var vsIndex = gameString.indexOf('vs');
@@ -81,11 +80,11 @@ var parseUserMatchedGame = function(gameString) {
 	var scorePattern = new RegExp(/\d{1,3}-\d{1}d|\d{1,3}-\d{1}|\d{1,3}/g);
 	var match = gameString.match(scorePattern);
 	// console.log(gameString, match);
-}
+};
 
 var findTeam = function(teamString) {
 
-}
+};
 
 Pebble.addEventListener("ready",
     function(e) {
