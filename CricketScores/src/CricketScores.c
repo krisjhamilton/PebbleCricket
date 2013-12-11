@@ -18,8 +18,7 @@ enum ScoreKey {
   TEAM1_SCORE2_KEY = 0x2,
   TEAM2_NAME_KEY = 0x3,
   TEAM2_SCORE_KEY = 0x4,
-  TEAM2_SCORE2_KEY = 0x5,
-  // IS_TEST = 0x6,
+  TEAM2_SCORE2_KEY = 0x5
 };
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
