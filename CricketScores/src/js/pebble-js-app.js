@@ -18,19 +18,39 @@ var teamHash = {
 
 var teamname = "New Zealand";
 var updateInterval = 10;
-var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json"
-var XMLURL = "http://www.ecb.co.uk/live-scores.xml"
+var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json" // add &r=randomnumber
+var XMLURL = "http://www.ecb.co.uk/live-scores.xml";
 
 function fetchScores() {
-	var response;
+	var response = null;
 	var req = new XMLHttpRequest();
-	req.open('GET', JSONURL, false);
+	req.open('GET', XMLURL, false);
+	req.setRequestHeader('Pragma', 'no-cache')
+	req.setRequestHeader('Cache-Control', 'no-cache, must-revalidate”')
+	req.setRequestHeader('Expires', 'Mon, 12 Jul 2010 03:00:00 GMT')
 	req.onload = function(e) {
 		response = req.responseText;
-		parseScoreResponse(response);
+		// parseScoreResponse(response);
+		parseXMLResponseText(response);
 	}
 	req.send(null);
 };
+
+var parseXMLResponseText = function(responseText) {
+	var responseArray = responseText.split("\n");
+	var gameString;
+	for (var i = 0; i < responseArray.length; i++) {
+		if ( responseArray[i].match(/title/) && responseArray[i].match(teamname) ) {
+			gameString = responseArray[i].trim();
+			break;
+		};
+	};
+	if ( !gameString ) {
+		// do something
+	} else {
+		parseUserMatchedGame(gameString);
+	}
+}
 
 var createResponseForPebble = function(team1String, team2String, isTest) {
 	var scorePattern = new RegExp(/\d{1,3}-\d{1}d|\d{1,3}-\d{1}|\d{1,3}/g);
@@ -71,7 +91,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 	    "team2_score":team2Score1,
 	    "team2_score2":team2Score2
 	};
-	console.log("Sending:", team1Score1);
+	console.log("Sending", team1Score1);
 	
 	Pebble.sendAppMessage({
 	    "team1_name":team1Name,
