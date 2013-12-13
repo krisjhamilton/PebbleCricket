@@ -102,10 +102,10 @@ static void window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(team2_score));
 
   Tuplet initial_values[] = {
-    TupletCString(TEAM1_NAME_KEY, "IND"),
-    TupletCString(TEAM1_SCORE_KEY, "480/10"),
-    TupletCString(TEAM2_NAME_KEY, "PAK"),
-    TupletCString(TEAM2_SCORE_KEY, "280/10")
+    TupletCString(TEAM1_NAME_KEY, "Loading"),
+    TupletCString(TEAM1_SCORE_KEY, "-----"),
+    TupletCString(TEAM2_NAME_KEY, "------"),
+    TupletCString(TEAM2_SCORE_KEY, "------")
   };
 
   app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
