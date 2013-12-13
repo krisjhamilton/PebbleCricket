@@ -162,3 +162,17 @@ Pebble.addEventListener("ready",
         }, updateInterval*1000);
     }
 );
+
+Pebble.addEventListener("showConfiguration", function(e) {
+	Pebble.openURL("http://ishanthukral.github.io/Pebble-CricketScores/");
+	console.log(e.type);
+	console.log(e.response);
+});
+
+Pebble.addEventListener("webviewclosed", function(e) {
+	var configuration = JSON.parse(e.response);
+	console.log("Configuration window returned: ", configuration);
+});
+
+
+
