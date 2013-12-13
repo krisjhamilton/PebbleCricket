@@ -16,10 +16,11 @@ var teamHash = {
 	"Zimbabwe": "ZIM"
 };
 
-var teamname = "New Zealand";
-var updateInterval = 10;
+var teamname = "India";
+var updateInterval = 30;
 var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json" // add &r=randomnumber
 var XMLURL = "http://www.ecb.co.uk/live-scores.xml";
+var updateIntervalId;
 
 function fetchScores() {
 	var response = null;
@@ -157,7 +158,7 @@ var findTeam = function(teamString) {
 Pebble.addEventListener("ready",
     function(e) {
         fetchScores();
-        setInterval(function() {
+        updateIntervalId = setInterval(function() {
         	fetchScores();
         }, updateInterval*1000);
     }
@@ -170,8 +171,11 @@ Pebble.addEventListener("showConfiguration", function(e) {
 });
 
 Pebble.addEventListener("webviewclosed", function(e) {
-	console.log(e.response);
 	var configuration = JSON.parse(e.response);
+	clearInterval(updateIntervalId);
+	teamname = configuration.team;
+	updateInterval = configuration.time;
+	fetchScores();
 	console.log("Configuration window returned: ", configuration);
 });
 

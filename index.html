@@ -46,11 +46,14 @@
 
 		</script>
 
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
 		<style>
 
 			body
 			{
 				margin: 0 auto;
+				font-family: 'Roboto', sans-serif;
+				background: #E6E6E6;
 			}
 			h2
 			{
@@ -60,6 +63,15 @@
 			button
 			{
 				width: 100%;
+			}
+			.logo
+			{
+				width: 100%;
+			}
+			.heading
+			{
+				background: #272822;
+				color: #E6E6E6;
 			}
 			.team-list, .update-schedule
 			{
@@ -80,6 +92,9 @@
 			}
 			.button
 			{
+				position: fixed;
+				width: 100%;
+				bottom: 0;
 				text-align: center;
 				margin: 0 auto;
 				padding-top: 5%;
@@ -93,6 +108,8 @@
 	</head>
 
 	<body>
+
+		<img class="logo" src="WebResources/Images/pebble_cricket_icon_v1.png">
 
 		<h2>Pick a Team</h2>
 
@@ -123,11 +140,12 @@
 			<p id="30" class="update-time">30 Seconds</p>
 			<p id="60" class="update-time">1 Minute</p>
 			<p id="300" class="update-time picked">5 Minutes</p>
-			<p id="600" class="update-time bottom" style="border-bottom:none;">10 Minutes</p>
+			<p id="600" class="update-time bottom" style="border-bottom:none">10 Minutes</p>
+			<p id="600" class="update-time bottom" style="border-bottom:none">10 Minutes</p>
 		
 		</div>
 
-		<div class="button">Done</div>
+		<div class="button">CLICK TO SUBMIT</div>
 
 	</body>
 
