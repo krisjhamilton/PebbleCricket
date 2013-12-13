@@ -32,12 +32,13 @@
 					$(this).siblings().removeClass('picked');
 					$(this).addClass('picked');
 					selectedTeam = $(this).text();
-					setSubmit(selectedTeam, selectedTime);
 				});
 				$(updateTime).on('click', function(){
 					$(this).siblings().removeClass('picked');
 					$(this).addClass('picked');
 					selectedTime = $(this).attr('id');
+				});
+				$(submit).on('click', function(){
 					setSubmit(selectedTeam, selectedTime);
 				});
 
