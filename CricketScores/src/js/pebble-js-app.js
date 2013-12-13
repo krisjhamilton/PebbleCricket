@@ -156,7 +156,7 @@ Pebble.addEventListener("ready",
 );
 
 Pebble.addEventListener("showConfiguration", function(e) {
-	Pebble.openURL("http://ishanthukral.github.io/Pebble-CricketScores/");
+	Pebble.openURL("http://ishanthukral.github.io/Pebble-CricketScores/config.html");
 	console.log(e.type);
 	console.log(e.response);
 });
