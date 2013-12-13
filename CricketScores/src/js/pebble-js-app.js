@@ -59,48 +59,39 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 	// team1
 	var team1Name = findTeam(team1String)
 	var team1ScoreArray = team1String.match(scorePattern);
-	var team1Score1 = "--";
-	var team1Score2 = "--";
+	var team1Score = "--";
 	if ( !team1ScoreArray ) {
 		// do nothing
 	} else if ( team1ScoreArray.length == 2 ) {
-		team1Score1 = team1ScoreArray[0];
-		team1Score2 = team1ScoreArray[1];
+		team1Score = team1ScoreArray[1];
 	} else {
-		team1Score1 = team1ScoreArray[0];
+		team1Score = team1ScoreArray[0];
 	};
 	
 	// team2
 	var team2Name = findTeam(team2String)
 	var team2ScoreArray = team2String.match(scorePattern);
-	var team2Score1 = "--";
-	var team2Score2 = "--";
+	var team2Score = "--";
 	if ( !team2ScoreArray ) {
 		// do nothing
 	} else if ( team2ScoreArray.length == 2 ) {
-		team2Score1 = team2ScoreArray[0];
-		team2Score2 = team2ScoreArray[1];
+		team2Score = team2ScoreArray[1];
 	} else {
-		team2Score1 = team2ScoreArray[0];
+		team2Score = team2ScoreArray[0];
 	};
 
 	var message = {
 	    "team1_name":team1Name,
-	    "team1_score":team1Score1,
-	    "team1_score2":team1Score2,
+	    "team1_score":team1Score,
 	    "team2_name":team2Name,
-	    "team2_score":team2Score1,
-	    "team2_score2":team2Score2
+	    "team2_score":team2Score
 	};
-	console.log("Sending", team1Score1);
 	
 	Pebble.sendAppMessage({
 	    "team1_name":team1Name,
-	    "team1_score":team1Score1,
-	    "team1_score2":team1Score2,
+	    "team1_score":team1Score,
 	    "team2_name":team2Name,
-	    "team2_score":team2Score1,
-	    "team2_score2":team2Score2
+	    "team2_score":team2Score
 	});
 };
 
