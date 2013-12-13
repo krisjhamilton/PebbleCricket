@@ -16,6 +16,13 @@
     "team2_score":3
   },
   "resources": {
-    "media": []
+    "media": [
+    {
+      "menuIcon": "true",
+      "type": "png",
+      "file": "icon.png",
+      "name": "ICON"
+    }
+      ]
   }
 }
