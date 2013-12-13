@@ -18,6 +18,7 @@
 						'time': time
 					}
 					$(submit).attr("href", "pebblejs://close#"+JSON.stringify(config));
+					window.location.href = "pebblejs://close#"+JSON.stringify(config)
 					console.log($(submit).attr("href"));
 				};
 
