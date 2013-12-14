@@ -1,6 +1,6 @@
 Pebble-CricketScores
 ====================
-A Pebble app to keep with with latest Cricket Scores right on your wrist.
+A Pebble app to keep you updated with the latest Cricket Scores right on your wrist.
 
 ### BETA 1
 Use the configuration website to choose your team and an update interval.
