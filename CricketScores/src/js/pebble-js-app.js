@@ -16,10 +16,12 @@ var teamHash = {
 	"Zimbabwe": "ZIM"
 };
 
+// defaults
 var teamname = "India";
-var updateInterval = 30;
+var updateInterval = 3000; // 5 minutes
 var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json" // add &r=randomnumber
 var XMLURL = "http://www.ecb.co.uk/live-scores.xml";
+
 var updateIntervalId;
 
 function fetchScores() {
@@ -47,7 +49,14 @@ var parseXMLResponseText = function(responseText) {
 		};
 	};
 	if ( !gameString ) {
-		// do something
+		// no active games
+		var team = findTeam(teamname);
+		Pebble.sendAppMessage({
+			"team1_name":team,
+	    	"team1_score":"HAS NO",
+	    	"team2_name":"ACTIVE",
+	    	"team2_score":"GAMES"
+		});
 	} else {
 		parseUserMatchedGame(gameString);
 	}
@@ -99,7 +108,12 @@ var parseScoreResponse = function(response) {
 	var activeGames = JSON.parse(response).value.items;
 	if ( activeGames.length == 0 ) { 
 		console.log("No Active Games")
-		// do something
+		Pebble.sendAppMessage({
+			"team1_name":"NO",
+	    	"team1_score":"ACTIVE",
+	    	"team2_name":"GAMES",
+	    	"team2_score":"CURRENTLY"
+		});
 	}
 	else {
 		findUserMatchingGame(activeGames);
@@ -108,17 +122,28 @@ var parseScoreResponse = function(response) {
 
 var findUserMatchingGame = function(activeGames) {
 	var userTeamGame = null;
+	var foundMatchingGame = false;
 	for (var i = 0; i < activeGames.length; i++) {			
 		var gameString = activeGames[i].title;
 		var teamRegex = new RegExp(teamname);
 		var teamMatch = teamRegex.exec(gameString);
-		if (teamMatch) { 
+		if ( teamMatch ) { 
 			userTeamGame = activeGames[i].title;
+			foundMatchingGame = true;
 			parseUserMatchedGame(userTeamGame)
 			break;
 		};
 	};
-	// do something
+	// no matching games
+	if ( !foundMatchingGame ) {
+		var team = findTeam(teamname);
+		Pebble.sendAppMessage({
+			"team1_name":team,
+	    	"team1_score":"HAS NO",
+	    	"team2_name":"ACTIVE",
+	    	"team2_score":"GAMES"
+		});
+	};
 };
 
 var isTest = function(gameString) {

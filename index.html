@@ -11,13 +11,157 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
 		<style>
+
+			*, *:before, *:after
+			{
+  				-moz-box-sizing: border-box;
+  				-webkit-box-sizing: border-box;
+  				box-sizing: border-box;
+ 			}
+
+ 			body
+ 			{
+ 				margin: 0;
+ 				font-family: 'Roboto', sans-serif;
+ 			}
+ 			p
+ 			{
+ 				padding: 0;
+ 				margin: 0;
+ 			}
+
+			.container
+			{
+				min-width: 100%;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.content
+			{
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.banner
+			{
+				width: 100%;
+				background: #E6E6E6;
+				padding: 5% 0;
+			}
+			.banner img
+			{
+				margin: 0 auto;
+				display: block;
+				max-width: 100%;
+			}
+
+			.about
+			{
+				padding: 5%;
+				width: 100%;
+				background: #272822;
+				color: #E6E6E6;
+			}
+			.about h1
+			{
+				text-align: center;
+				font-size: 2.2em;
+				font-weight: 100;
+			}
+			.about .buttons
+			{
+				display: block;
+				padding-top: 5%;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.about .buttons .button
+			{
+				display: inline-block;
+				padding: 3%;
+				background: #E6E6E6;
+				color: #272822;
+			}
+			.about .buttons .button a
+			{
+				text-decoration: none;
+				color: #272822;
+			}
+			.about .description
+			{
+				padding-top: 8%;
+				text-align: left;
+				padding-bottom: 5%;
+			}
+			.about .description a
+			{
+				text-decoration: none;
+				color: #E6E6E6;
+			}
+			.about .description a:link
+			{
+				border-bottom: 1px solid #E6E6E6;
+			}
+
+			.footer
+			{
+				padding: 5%;
+				text-align: center;
+				background: #E6E6E6;
+				color: #272822;
+			}
+			.footer a
+			{
+				text-decoration: none;
+				color: #272822;
+			}
+			.footer a:link
+			{
+				border-bottom: 1px solid #272822;
+			}
+
 		</style>
 
 	</head>
 
 	<body>
 
-		<h2>Hello World</h2>
+		<div class="container">
+			
+			<div class="banner">
+				<div class="content">
+					<img src="WebResources/Images/icon.svg" style="padding-bottom: 10%;">
+					<img src="WebResources/Images/banner.png">
+				</div>
+			</div>
+
+			<div class="about">
+				<div class="content">
+					<h1>Keep Up With The Latest On Your Wrist</h1>
+					<div class="buttons">
+						<div class="download-button button" href="http://www.mypebblefaces.com/download_app?cID=7744&fID=8224&version=0.1&uID=13904/" style="margin-right: 10%;">
+							<p>DOWNLOAD - BETA 1</p>
+						</div>
+						<div class="source-button button">
+							<a href="http://github.com/ishanthukral/Pebble-CricketScores/">SOURCE<a>
+						</div>
+					</div>
+					<div class="description">
+						<p>Use the configuration website from the Pebble app to select a team and an update interval. This app requires the <a href="https://developer.getpebble.com/2/">2.0 BETA SDK<a>.<br><br>The app is still in beta and will have some bugs. I'd appriciate any feedback or feature requests. I can be reached on <a href="http://twitter.com/ishanthukral">twitter</a> or <a href="mailto:dev@ishan.me">email</a>.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer">
+				<p>Developed by <a href="http://ishan.me">Ishan Thukral</a></p>
+				<br>
+				<a href="http://github.com/ishanthukral/" style="margin-right: 3%;">GITHUB</a>
+				<a href="http://twitter.com/ishanthukral/" style="margin-right: 3%;">TWITTER</a>
+				<a href="mailto:mail@ishan.me">EMAIL</a>
+			</div>
+
+		</div>
 
 	</body>
 
