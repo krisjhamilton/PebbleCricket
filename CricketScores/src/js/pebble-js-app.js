@@ -29,7 +29,7 @@ function fetchScores() {
 	var req = new XMLHttpRequest();
 	req.open('GET', XMLURL, false);
 	req.setRequestHeader('Pragma', 'no-cache')
-	req.setRequestHeader('Cache-Control', 'no-cache, must-revalidate”')
+	req.setRequestHeader('Cache-Control', 'no-cache, must-revalidate')
 	req.setRequestHeader('Expires', 'Mon, 12 Jul 2010 03:00:00 GMT')
 	req.onload = function(e) {
 		response = req.responseText;
@@ -42,10 +42,19 @@ function fetchScores() {
 var parseXMLResponseText = function(responseText) {
 	var responseArray = responseText.split("\n");
 	var gameString;
+	var isWomenGame = false;
 	for (var i = 0; i < responseArray.length; i++) {
+		// check for women's games
+		if ( responseArray[i].match(/title/) && responseArray[i].match("Women") ) {
+			isWomenGame = true;
+		} else {
+			isWomenGame = false;
+		};
 		if ( responseArray[i].match(/title/) && responseArray[i].match(teamname) ) {
-			gameString = responseArray[i].trim();
-			break;
+			if (!isWomenGame) {
+				gameString = responseArray[i].trim();
+				break;
+			};
 		};
 	};
 	if ( !gameString ) {
@@ -127,7 +136,13 @@ var findUserMatchingGame = function(activeGames) {
 		var gameString = activeGames[i].title;
 		var teamRegex = new RegExp(teamname);
 		var teamMatch = teamRegex.exec(gameString);
-		if ( teamMatch ) { 
+
+		// check for womem's games and ignore if found
+		var womenRegex = new RegExp("Women");
+		var womenMatch = womenRegex.exec(womenRegex);
+		console.log('WOMEN:'+womenMatch.length);
+
+		if ( teamMatch && (womenMatch.length > 0) ) { 
 			userTeamGame = activeGames[i].title;
 			foundMatchingGame = true;
 			parseUserMatchedGame(userTeamGame)
@@ -181,7 +196,7 @@ Pebble.addEventListener("ready",
 );
 
 Pebble.addEventListener("showConfiguration", function(e) {
-	Pebble.openURL("http://ishanthukral.github.io/Pebble-CricketScores/config.html");
+	Pebble.openURL("http://ishanthukral.github.io/PebbleCricket/config.html");
 	console.log(e.type);
 	console.log(e.response);
 });
@@ -194,6 +209,3 @@ Pebble.addEventListener("webviewclosed", function(e) {
 	fetchScores();
 	console.log("Configuration window returned: ", configuration);
 });
-
-
-

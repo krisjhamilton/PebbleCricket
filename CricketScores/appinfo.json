@@ -4,8 +4,8 @@
   "longName": "Cricket Scores",
   "capabilities": [ "configurable" ],
   "companyName": "Ishan Thukral",
-  "versionCode": 0.1,
-  "versionLabel": "Beta 1",
+  "versionCode": 0.2,
+  "versionLabel": "0.2",
   "watchapp": {
     "watchface": false
   },
