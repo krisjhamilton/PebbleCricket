@@ -28,9 +28,9 @@ function fetchScores() {
 	var response = null;
 	var req = new XMLHttpRequest();
 	req.open('GET', XMLURL, false);
-	req.setRequestHeader('Pragma', 'no-cache')
-	req.setRequestHeader('Cache-Control', 'no-cache, must-revalidate')
-	req.setRequestHeader('Expires', 'Mon, 12 Jul 2010 03:00:00 GMT')
+	req.setRequestHeader('Pragma', 'no-cache');
+	req.setRequestHeader('Cache-Control', 'no-cache, must-revalidate');
+	req.setRequestHeader('Expires', 'Mon, 12 Jul 2010 03:00:00 GMT');
 	req.onload = function(e) {
 		response = req.responseText;
 		// parseScoreResponse(response);
@@ -75,7 +75,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 	var scorePattern = new RegExp(/\d{1,3}-\d{1}d|\d{1,3}-\d{1}|\d{1,3}/g);
 	
 	// team1
-	var team1Name = findTeam(team1String)
+	var team1Name = findTeam(team1String);
 	var team1ScoreArray = team1String.match(scorePattern);
 	var team1Score = "--";
 	if ( !team1ScoreArray ) {
@@ -87,7 +87,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 	};
 	
 	// team2
-	var team2Name = findTeam(team2String)
+	var team2Name = findTeam(team2String);
 	var team2ScoreArray = team2String.match(scorePattern);
 	var team2Score = "--";
 	if ( !team2ScoreArray ) {
@@ -145,7 +145,7 @@ var findUserMatchingGame = function(activeGames) {
 		if ( teamMatch && (womenMatch.length > 0) ) { 
 			userTeamGame = activeGames[i].title;
 			foundMatchingGame = true;
-			parseUserMatchedGame(userTeamGame)
+			parseUserMatchedGame(userTeamGame);
 			break;
 		};
 	};
