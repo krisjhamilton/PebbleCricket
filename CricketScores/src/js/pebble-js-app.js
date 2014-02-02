@@ -19,7 +19,7 @@ var teamHash = {
 // defaults
 var teamname = "India";
 var updateInterval = 3000; // 5 minutes
-var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json" // add &r=randomnumber
+var JSONURL = "http://pipes.yahoo.com/pipes/pipe.run?_id=b2b8571617d65f12000120cf55d01bec&_render=json"; // add &r=randomnumber
 var XMLURL = "http://www.ecb.co.uk/live-scores.xml";
 
 var updateIntervalId;
