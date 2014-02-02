@@ -35,9 +35,9 @@ function fetchScores() {
 		response = req.responseText;
 		// parseScoreResponse(response);
 		parseXMLResponseText(response);
-	}
+	};
 	req.send(null);
-};
+}
 
 var parseXMLResponseText = function(responseText) {
 	var responseArray = responseText.split("\n");
@@ -49,14 +49,14 @@ var parseXMLResponseText = function(responseText) {
 			isWomenGame = true;
 		} else {
 			isWomenGame = false;
-		};
+		}
 		if ( responseArray[i].match(/title/) && responseArray[i].match(teamname) ) {
 			if (!isWomenGame) {
 				gameString = responseArray[i].trim();
 				break;
-			};
-		};
-	};
+			}
+		}
+	}
 	if ( !gameString ) {
 		// no active games
 		var team = findTeam(teamname);
@@ -69,11 +69,11 @@ var parseXMLResponseText = function(responseText) {
 	} else {
 		parseUserMatchedGame(gameString);
 	}
-}
+};
 
 var createResponseForPebble = function(team1String, team2String, isTest) {
 	var scorePattern = new RegExp(/\d{1,3}-\d{1}d|\d{1,3}-\d{1}|\d{1,3}/g);
-	
+
 	// team1
 	var team1Name = findTeam(team1String);
 	var team1ScoreArray = team1String.match(scorePattern);
@@ -84,8 +84,8 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 		team1Score = team1ScoreArray[1];
 	} else {
 		team1Score = team1ScoreArray[0];
-	};
-	
+	}
+
 	// team2
 	var team2Name = findTeam(team2String);
 	var team2ScoreArray = team2String.match(scorePattern);
@@ -96,7 +96,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 		team2Score = team2ScoreArray[1];
 	} else {
 		team2Score = team2ScoreArray[0];
-	};
+	}
 
 	var message = {
 	    "team1_name":team1Name,
@@ -104,7 +104,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 	    "team2_name":team2Name,
 	    "team2_score":team2Score
 	};
-	
+
 	Pebble.sendAppMessage({
 	    "team1_name":team1Name,
 	    "team1_score":team1Score,
@@ -116,7 +116,7 @@ var createResponseForPebble = function(team1String, team2String, isTest) {
 var parseScoreResponse = function(response) {
 	var activeGames = JSON.parse(response).value.items;
 	if ( activeGames.length == 0 ) { 
-		console.log("No Active Games")
+		console.log("No Active Games");
 		Pebble.sendAppMessage({
 			"team1_name":"NO",
 	    	"team1_score":"ACTIVE",
@@ -126,7 +126,7 @@ var parseScoreResponse = function(response) {
 	}
 	else {
 		findUserMatchingGame(activeGames);
-	};
+	}
 };
 
 var findUserMatchingGame = function(activeGames) {
@@ -147,8 +147,8 @@ var findUserMatchingGame = function(activeGames) {
 			foundMatchingGame = true;
 			parseUserMatchedGame(userTeamGame);
 			break;
-		};
-	};
+		}
+	}
 	// no matching games
 	if ( !foundMatchingGame ) {
 		var team = findTeam(teamname);
@@ -158,7 +158,7 @@ var findUserMatchingGame = function(activeGames) {
 	    	"team2_name":"ACTIVE",
 	    	"team2_score":"GAMES"
 		});
-	};
+	}
 };
 
 var isTest = function(gameString) {
