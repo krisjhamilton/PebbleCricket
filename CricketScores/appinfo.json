@@ -1,28 +1,30 @@
 {
-  "uuid": "0656547b-2d4e-40c1-b19b-582f7368c328",
-  "shortName": "Cricket",
-  "longName": "Cricket Scores",
-  "capabilities": [ "configurable" ],
-  "companyName": "Ishan Thukral",
-  "versionCode": 0.2,
-  "versionLabel": "0.2",
-  "watchapp": {
-    "watchface": false
-  },
-  "appKeys": {
-    "team1_name":0,
-    "team1_score":1,
-    "team2_name":2,
-    "team2_score":3
-  },
-  "resources": {
-    "media": [
-    {
-      "menuIcon": "true",
-      "type": "png",
-      "file": "icon.png",
-      "name": "ICON"
+    "versionLabel": "0.2",
+    "uuid": "0656547b-2d4e-40c1-b19b-582f7368c328",
+    "appKeys": {
+        "team1_name": 0,
+        "team2_name": 2,
+        "team2_score": 3,
+        "team1_score": 1
+    },
+    "longName": "Cricket Scores",
+    "versionCode": 0,
+    "capabilities": [
+        "configurable"
+    ],
+    "shortName": "Cricket",
+    "companyName": "Ishan Thukral",
+    "watchapp": {
+        "watchface": false
+    },
+    "resources": {
+        "media": [
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "ICON",
+                "file": "images/icon.png"
+            }
+        ]
     }
-      ]
-  }
 }
